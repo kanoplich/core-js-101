@@ -248,8 +248,21 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  // throw new Error('Not implemented');
+  const res = [];
+  let sum = 0;
+  arr.map((el, i) => {
+    if (i === 0) {
+      res.push(el);
+      sum += el;
+    } else {
+      sum += el;
+      res.push(sum);
+    }
+    return res;
+  });
+  return res;
 }
 
 /**
@@ -283,8 +296,20 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  // throw new Error('Not implemented');
+  const res = [];
+  arr.map((el, i) => {
+    if (i === 0) {
+      res.push(el);
+    } else {
+      const newArr = new Array(i + 1);
+      newArr.fill(el);
+      res.push(newArr);
+    }
+    return res;
+  });
+  return res.flat();
 }
 
 
@@ -338,8 +363,12 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  // throw new Error('Not implemented');
+  const number = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  const indexArr = arr.map((item) => ({ el: item, index: number.indexOf(item) }));
+
+  return indexArr.sort((a, b) => a.index - b.index).map((item) => item.el);
 }
 
 /**
@@ -438,8 +467,20 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  // throw new Error('Not implemented');
+  return arr.sort((a, b) => {
+    if (a.country > b.country) {
+      return 1;
+    }
+    if (a.country === b.country) {
+      if (a.city > b.city) {
+        return 1;
+      }
+      return -1;
+    }
+    return -1;
+  });
 }
 
 /**
